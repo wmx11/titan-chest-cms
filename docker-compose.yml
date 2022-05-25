@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  titan-chest-cms:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: titan-chest-cms
+    ports:
+      - 1337:1337
+    expose:
+      - 1337
+    volumes:
+      - ./config:/opt/app/config
+      - ./src:/opt/app/src
+      - ./package.json:/opt/package.json
+      # - ./yarn.lock:/opt/yarn.lock
+      - ./.env:/opt/app/.env
+
+networks:
+  default:
+    external:
+      name: titan-chest-network
